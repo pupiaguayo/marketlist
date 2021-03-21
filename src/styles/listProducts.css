@@ -1,0 +1,61 @@
+.container-list {
+  text-align: center;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+.container-list ul {
+  width: 15.625em;
+  margin: auto;
+  background-color: #222326;
+  list-style: none;
+}
+
+.container-list li {
+  display: flex;
+  margin: auto;
+  width: auto;
+  color: white;
+  margin: auto;
+  margin-top: 10px;
+}
+.container-list .actions {
+  margin-left: 50px;
+}
+
+.container-list .actions button {
+  margin-left: 10px;
+  background-color: #1db954;
+  outline: none;
+  border: none;
+  font-size: 15px;
+  border-radius: 1px;
+  color: #ffff;
+}
+.container-list .actions .eliminar {
+  background-color: red;
+}
+
+.container-list .agregar-item {
+  margin-bottom: 25px;
+  background-color: #1db954;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 6px;
+  color: #ffff;
+}
+.container-list .agregar-item {
+  font-size: 22px;
+}
+.edit-modal {
+  margin-top: 200px;
+  color: white;
+  border: none;
+}
+.edit-modal .header-modal,
+.body-modal,
+.footer-modal {
+  background-color: #222326;
+  border: none;
+}

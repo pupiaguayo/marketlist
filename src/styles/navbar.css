@@ -1,0 +1,11 @@
+.container-edit {
+  text-align: center;
+  margin-top: 10px;
+}
+.container-edit h1 {
+  color: #1db954;
+  font-size: 40px;
+}
+.container-edit h1:hover {
+  font-size: 45px;
+}
