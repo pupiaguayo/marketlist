@@ -1,4 +1,7 @@
 .container-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: center;
   margin-top: 1.25em;
   margin-bottom: 1.25em;
@@ -12,14 +15,10 @@
 
 .container-list li {
   display: flex;
-  margin: auto;
-  width: auto;
+  justify-content: space-between;
   color: white;
-  margin: auto;
   margin-top: 10px;
-}
-.container-list .actions {
-  margin-left: 50px;
+  text-align: center;
 }
 
 .container-list .actions button {
