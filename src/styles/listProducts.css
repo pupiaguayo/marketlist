@@ -35,17 +35,17 @@
 }
 
 .container-list .agregar-item {
-  margin-bottom: 25px;
+  margin-bottom: 1.5625em;
   background-color: #1db954;
   outline: none;
   border: none;
-  border-radius: 10px;
-  font-size: 20px;
-  padding: 6px;
+  border-radius: 0.625em;
+  font-size: 1.25em;
+  padding: 0.375em;
   color: #ffff;
 }
 .container-list .agregar-item {
-  font-size: 22px;
+  font-size: 1.5em;
 }
 .edit-modal {
   margin-top: 200px;

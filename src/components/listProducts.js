@@ -55,7 +55,7 @@ const ListProducts = () => {
               <li key={item.id}>
                 {item.producto}
                 <div className="actions">
-                  <button>E</button>
+                  {/* <button>E</button> */}
                   <button
                     onClick={(id) => {
                       borrarUser(item.id);
@@ -91,12 +91,17 @@ const ListProducts = () => {
                   setProducto(e.target.value);
                 }}
               />
-              <input type="submit" onClick={toggle} />
+              <input
+                type="submit"
+                onClick={toggle}
+                value="Agregar Producto
+              "
+              />
             </form>
           </ModalBody>
           <ModalFooter className="footer-modal">
             <Button onClick={toggle}>Cancel</Button>
-            {error ? (
+            {/* {error ? (
               <div>
                 <p>{error}</p>
               </div>
@@ -104,7 +109,7 @@ const ListProducts = () => {
               <div>
                 <p>No hay bada</p>
               </div>
-            )}
+            )} */}
           </ModalFooter>
         </Modal>
       </div>
