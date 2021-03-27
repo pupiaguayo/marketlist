@@ -1,40 +1,49 @@
 .container-list {
+  margin: 1.25em auto;
+  width: 25em;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  text-align: center;
-  margin-top: 1.25em;
-  margin-bottom: 1.25em;
+  flex-wrap: wrap;
 }
-.container-list ul {
-  width: 15.625em;
-  margin: auto;
-  background-color: #222326;
-  list-style: none;
-}
-
+/* Estilos LISTA */
 .container-list li {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+  width: 22em;
+  height: 2em;
+  margin: 0.3em auto;
+  border: 0.0625em solid #474950;
+  border-radius: 0.25em;
   color: white;
-  margin-top: 10px;
-  text-align: center;
+  text-decoration: none;
+  list-style: none;
+}
+.container-list li .producto {
+  width: 70%;
 }
 
 .container-list .actions button {
-  margin-left: 10px;
   background-color: #1db954;
+  margin-left: 1em;
   outline: none;
   border: none;
-  font-size: 15px;
+  font-size: 0.9375em;
   border-radius: 1px;
   color: #ffff;
 }
+
 .container-list .actions .eliminar {
   background-color: red;
 }
+/* Estilos LISTA */
 
-.container-list .agregar-item {
+/* Estilos Boton AGREGAR */
+.container-button {
+  text-align: center;
+}
+.container .agregar-item {
   margin-bottom: 1.5625em;
   background-color: #1db954;
   outline: none;
@@ -45,16 +54,64 @@
   color: #ffff;
 }
 .container-list .agregar-item {
-  font-size: 1.5em;
+  font-size: 1.3em;
+  box-shadow: 2px 2px 10px #63ac7b;
 }
+.container-list .agregar-item:hover {
+  border: 1px solid white;
+}
+/* Estilos Boton AGREGAR */
+
+/* Estilos Boton MODAL */
 .edit-modal {
-  margin-top: 200px;
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 12.5em auto;
+  width: 25em;
+  color: rgb(48, 45, 45);
   border: none;
 }
+.body-modal h2 {
+  font-size: 1.9em;
+  color: #ffff;
+  margin-bottom: 0.6em;
+}
+.body-modal input {
+  outline: none;
+  border: none;
+  border-radius: 0.4em;
+  font-size: 1em;
+  color: #ffff;
+}
+.body-modal .ingresarProd {
+  color: rgb(0, 0, 0);
+}
+.body-modal .agregar-eliminar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1.6em;
+}
+.body-modal .agregar-eliminar .button-agregar {
+  background-color: #1db954;
+}
+
+.body-modal .agregar-eliminar .button-agregar:hover {
+  border: 0.0313em solid white;
+}
+.body-modal .agregar-eliminar .button-cancelar {
+  background-color: #575757;
+  color: #ffff;
+  opacity: 0.6;
+}
+.body-modal .agregar-eliminar .button-cancelar:hover {
+  opacity: 1;
+}
 .edit-modal .header-modal,
-.body-modal,
-.footer-modal {
+.body-modal {
   background-color: #222326;
   border: none;
 }
+/* Estilos Boton MODAL */

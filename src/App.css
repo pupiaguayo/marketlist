@@ -10,15 +10,9 @@ body {
     font-size: 14px;
   }
 }
-/*MEDIA QUERIES 767PX*/
-@media (max-width: 767.98px) {
+
+@media (max-width: 376px) {
   body {
     font-size: 12px;
-  }
-}
-/*MEDIA QUERIES 575PX*/
-@media (max-width: 575.98px) {
-  body {
-    font-size: 10px;
   }
 }

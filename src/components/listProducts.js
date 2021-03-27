@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "../styles/listProducts.css";
 import { store } from "../firebaseconfig";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalBody } from "reactstrap";
+import swal from "sweetalert";
 const ListProducts = () => {
+  const [idProd, setIdProd] = useState("");
+  const [edicion, setEdicion] = useState(null);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const [producto, setProducto] = useState("");
   const [error, setError] = useState("");
   const [listaProductos, setListaProductos] = useState([]);
-
   const setProductos = async (e) => {
     e.preventDefault();
     if (!producto.trim()) {
-      setError("Ingrese producto");
+      swal({
+        title: "Error",
+        text: "El campo producto esta vacio",
+        icon: "warning",
+        dangerMode: true,
+      });
+      return;
     }
     const productos = {
       producto: producto,
@@ -22,7 +30,7 @@ const ListProducts = () => {
       const { docs } = await store.collection("listaProd").get();
       const nuevoArray = docs.map((item) => ({ id: item.id, ...item.data() }));
       setListaProductos(nuevoArray);
-      alert("Producto agregado");
+      swal("¡Producto agregado!", "Continua cargando tu lista", "success");
     } catch (e) {
       console.log(e);
     }
@@ -36,7 +44,7 @@ const ListProducts = () => {
     };
     getProductosBase();
   }, []);
-  const borrarUser = async (id) => {
+  const borrarProducto = async (id) => {
     try {
       await store.collection("listaProd").doc(id).delete();
       const { docs } = await store.collection("listaProd").get();
@@ -46,19 +54,59 @@ const ListProducts = () => {
       console.log(e);
     }
   };
+  const actualizar = async (id) => {
+    toggle();
+    try {
+      const data = await store.collection("listaProd").doc(id).get();
+      const { producto } = data.data();
+      setProducto(producto);
+      setIdProd(id);
+      setEdicion(true);
+      console.log(id);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const setUpdate = async (e) => {
+    e.preventDefault();
+    if (!producto.trim()) {
+      setError("Ingrese producto");
+    }
+    const productoUpdate = {
+      producto: producto,
+    };
+    try {
+      await store.collection("listaProd").doc(idProd).set(productoUpdate);
+      const { docs } = await store.collection("listaProd").get();
+      const nuevoArray = docs.map((item) => ({ id: item.id, ...item.data() }));
+      setListaProductos(nuevoArray);
+      alert("Producto actualizado");
+    } catch (e) {
+      console.log(e);
+    }
+    setProducto("");
+    setIdProd("");
+    setEdicion(false);
+  };
   return (
     <React.Fragment>
-      <div className="container container-list">
-        <ul>
+      <div className="container">
+        <ul className="container container-list">
           {listaProductos.length !== 0 ? (
             listaProductos.map((item) => (
               <li key={item.id}>
-                {item.producto}
+                <span className="producto">{item.producto}</span>
                 <div className="actions">
-                  {/* <button>E</button> */}
                   <button
                     onClick={(id) => {
-                      borrarUser(item.id);
+                      actualizar(item.id);
+                    }}
+                  >
+                    E
+                  </button>
+                  <button
+                    onClick={(id) => {
+                      borrarProducto(item.id);
                     }}
                     className="eliminar"
                   >
@@ -68,49 +116,58 @@ const ListProducts = () => {
               </li>
             ))
           ) : (
-            <span>asdsd</span>
+            <li>Ingrese Productos</li>
           )}
         </ul>
-        <div className="row fixed-bottom">
-          <div className="col-12 ">
-            <button className="agregar-item" onClick={toggle}>
-              Agregar Item
-            </button>
+        <div className="container container-button">
+          <div className="row fixed-bottom">
+            <div className="col-12 ">
+              <button className="agregar-item" onClick={toggle}>
+                Agregar Item
+              </button>
+            </div>
           </div>
         </div>
         <Modal isOpen={modal} className="edit-modal">
-          <ModalHeader className="header-modal">
-            Ingrese nombre del producto
-          </ModalHeader>
           <ModalBody className="body-modal">
-            <form onSubmit={setProductos} action="">
+            <h2>Nombre del producto</h2>
+            <form onSubmit={edicion ? setUpdate : setProductos} action="">
               <input
+                className="ingresarProd"
                 value={producto}
                 type="text"
                 onChange={(e) => {
                   setProducto(e.target.value);
                 }}
               />
-              <input
-                type="submit"
-                onClick={toggle}
-                value="Agregar Producto
+              <div className="agregar-eliminar">
+                <input
+                  className="button-cancelar"
+                  onClick={toggle}
+                  value="Cancelar
               "
-              />
+                  type="button"
+                />
+                {edicion ? (
+                  <input
+                    className="button-agregar"
+                    type="submit"
+                    onClick={toggle}
+                    value="Editar Producto
+              "
+                  />
+                ) : (
+                  <input
+                    className="button-agregar"
+                    type="submit"
+                    onClick={toggle}
+                    value="Agregar Producto
+              "
+                  />
+                )}
+              </div>
             </form>
           </ModalBody>
-          <ModalFooter className="footer-modal">
-            <Button onClick={toggle}>Cancel</Button>
-            {/* {error ? (
-              <div>
-                <p>{error}</p>
-              </div>
-            ) : (
-              <div>
-                <p>No hay bada</p>
-              </div>
-            )} */}
-          </ModalFooter>
         </Modal>
       </div>
     </React.Fragment>
